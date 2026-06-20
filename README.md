@@ -11,7 +11,7 @@ Helix LMS é uma plataforma digital para apoiar a gestão de turmas, atividades,
 - Henrique Kitzmann Tonel
 - Erik Luan Lasch
 - Pedro Henrique Bickel Steinbrenner
-- Mateus Oliveira
+- Matheus Oliveira
 
 ## 📚 Documentação
 
@@ -40,7 +40,7 @@ helix-lms/
 ## 🔗 Links
 
 - **Repositório GitHub:** [helix-lms](https://github.com/[usuario]/helix-lms)
-- **Gestor de Projetos:** [Link do Kanban]
+- **Gestor de Projetos:** [Link do Kanban](https://helix-lms.atlassian.net/)
 
 ## 🎓 Disciplina
 
