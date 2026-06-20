@@ -40,10 +40,10 @@ helix-lms/
 ## 🔗 Links
 
 - **Repositório GitHub:** [helix-lms](https://github.com/[usuario]/helix-lms)
-- **Gestor de Projetos:** [Link do Kanban]
+- **Gestor de Projetos:** [adicinar depois]
 
 ## 🎓 Disciplina
 
 **Modelagem e Projetos em Engenharia de Software**  
 Professora: Fabricia Roos  
-Universidade [Nome da Instituição]
+UNIJUÍ
