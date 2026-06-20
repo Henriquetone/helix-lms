@@ -46,4 +46,4 @@ helix-lms/
 
 **Modelagem e Projetos em Engenharia de Software**  
 Professora: Fabricia Roos  
-Universidade [Nome da Instituição]
+UNIJUÍ
