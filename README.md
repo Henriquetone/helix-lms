@@ -8,10 +8,10 @@ Helix LMS é uma plataforma digital para apoiar a gestão de turmas, atividades,
 
 ## 👥 Integrantes
 
-- Henrique K. Tonel
-- [Integrante 2]
-- [Integrante 3]
-- [Integrante 4]
+- Henrique Kitzmann Tonel
+- Erik Luan Lasch
+- Pedro Henrique Bickel Steinbrenner
+- Mateus Oliveira
 
 ## 📚 Documentação
 
