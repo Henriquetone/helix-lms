@@ -1,0 +1,13 @@
+# Backup folder for group artifacts
+backup/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
+
+# Node modules (if any)
+node_modules/

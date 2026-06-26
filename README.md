@@ -1,46 +1,27 @@
-# Helix LMS
+# Helix LMS - Entrega Individual do Pedro
 
-Sistema de Gestão de Sala de Aula Online desenvolvido como projeto da disciplina Modelagem e Projetos em Engenharia de Software.
+Este repositório contém a contribuição individual de Pedro Henrique Bickel Steinbrenner para o projeto Helix LMS, conforme as exigências da disciplina Modelagem e Projetos em Engenharia de Software.
 
-## 📋 Sobre o Projeto
+## 📚 Documentação incluída
 
-Helix LMS é uma plataforma digital para apoiar a gestão de turmas, atividades, avaliações e comunicação entre professores e estudantes, oferecendo uma solução completa para instituições de ensino.
-
-## 👥 Integrantes
-
-- Henrique Kitzmann Tonel
-- Erik Luan Lasch
-- Pedro Henrique Bickel Steinbrenner
-- Matheus Oliveira
-
-## 📚 Documentação
-
-Toda a documentação do projeto está organizada na pasta `docs/`:
-
-- [Visão do Produto](docs/visao-produto.md) - Problema, objetivos e benefícios esperados
-- [Stakeholders](docs/stakeholders.md) - Principais envolvidos no sistema
-- [Regras de Negócio](docs/regras-negocio.md) - Regras e seus impactos na solução
-- [User Stories](docs/user-stories.md) - Histórias de usuário e critérios de aceitação
-- [MVP](docs/mvp.md) - Definição do produto mínimo viável
-- [Arquitetura](docs/arquitetura.md) - Decisões e justificativas arquiteturais
-- [Sprint](docs/sprint.md) - Diário de desenvolvimento
+- [Engenharia de Software](docs/engenharia-software.md) - Requisitos de software, regras de negócio e rastreabilidade do trabalho do Pedro.
+- [TAREFAS-HENRIQUE.md](TAREFAS-HENRIQUE.md) - Responsabilidades e escopo da entrega individual.
 
 ## 🗂️ Estrutura do Repositório
 
 ```
 helix-lms/
-├── docs/               # Documentação do projeto
-├── bpmn/              # Diagramas de processos de negócio
-├── uml/               # Diagramas UML
-├── c4/                # Modelos de arquitetura C4
-├── apresentacao/      # Apresentação final
-└── README.md
+├── docs/
+│   └── engenharia-software.md
+├── backup/            # Material de referência do grupo (não parte da entrega individual)
+├── README.md
+├── TAREFAS-HENRIQUE.md
+└── .gitignore
 ```
 
-## 🔗 Links
+## Observação
 
-- **Repositório GitHub:** [helix-lms](https://github.com/[usuario]/helix-lms)
-- **Gestor de Projetos:** [Link do Kanban](https://helix-lms.atlassian.net/)
+A pasta `backup/` contém arquivos de documentação do grupo movidos para preservação. O conteúdo principal desta entrega é o documento de Engenharia de Software e a ficha de tarefas do Pedro.
 
 ## 🎓 Disciplina
 
