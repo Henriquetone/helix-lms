@@ -13,10 +13,6 @@ Helix LMS é uma plataforma digital para apoiar a gestão de turmas, atividades,
 - Pedro Henrique Bickel Steinbrenner
 - Matheus Oliveira
 
-## Entrega individual - Erik
-
-A parte de modelagem do Erik foi organizada como uma entrega complementar, preservando o contexto da solução, as decisões principais e o porquê de cada representação. A ideia foi mostrar não apenas as imagens finais, mas também a lógica que orientou a escolha dos diagramas.
-
 ### Arquivos principais
 
 - [BPMN.png](BPMN.png) — fluxo principal de publicação, entrega e correção de atividades
