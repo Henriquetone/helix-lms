@@ -1,50 +1,65 @@
-# Entrega Individual - Erik Luan Lasch
+# Helix LMS
 
-Este repositório reúne a entrega individual de modelagem do projeto Helix LMS, com foco em BPMN, UML e C4. A ideia foi preservar o contexto da solução, as decisões principais e o porquê de cada representação, em vez de deixar apenas as imagens finais.
+Sistema de Gestão de Sala de Aula Online desenvolvido como projeto da disciplina Modelagem e Projetos em Engenharia de Software.
 
-## Visão geral
+## Sobre o projeto
 
-O trabalho modela um sistema de gestão educacional para publicação de atividades, entrega de trabalhos, correção, feedback e acompanhamento acadêmico. A entrega foi organizada para mostrar não só o resultado final, mas também a lógica que levou à escolha de cada artefato.
+Helix LMS é uma plataforma digital para apoiar a gestão de turmas, atividades, avaliações e comunicação entre professores e estudantes, oferecendo uma solução completa para instituições de ensino.
 
-## Artefatos principais
+## Integrantes
+
+- Henrique Kitzmann Tonel
+- Erik Luan Lasch
+- Pedro Henrique Bickel Steinbrenner
+- Matheus Oliveira
+
+## Entrega individual - Erik
+
+A parte de modelagem do Erik foi organizada como uma entrega complementar, preservando o contexto da solução, as decisões principais e o porquê de cada representação. A ideia foi mostrar não apenas as imagens finais, mas também a lógica que orientou a escolha dos diagramas.
+
+### Arquivos principais
 
 - [BPMN.png](BPMN.png) — fluxo principal de publicação, entrega e correção de atividades
 - [UML.png](UML.png) — modelo conceitual e visão do domínio do sistema
 - [C4.png](C4.png) — visão arquitetural do sistema em níveis de contexto e containers
 
-## Por que cada modelo foi utilizado?
+### Documentação relacionada
 
-| Artefato | Objetivo | Por que foi escolhido |
-|---|---|---|
-| BPMN | Representar o processo de negócio | Permite mostrar claramente o fluxo de publicação, validações, prazos e correções |
-| UML | Modelar o domínio e os casos de uso | Ajuda a representar entidades, relações, regras e comportamento do sistema |
-| C4 | Explicar a arquitetura | Facilita a compreensão da estrutura do sistema, componentes e comunicação entre partes |
+- [docs/modelagem.md](docs/modelagem.md) — explicação sobre o papel de cada artefato
+- [docs/decisoes-arquiteturais.md](docs/decisoes-arquiteturais.md) — principais decisões e justificativas
+- [docs/revisao-boas-praticas.md](docs/revisao-boas-praticas.md) — refinamentos aplicados à modelagem
 
-## Decisões principais
+## Documentação
 
-- A modelagem foi pensada para cobrir tanto o processo quanto a estrutura do sistema.
-- A arquitetura foi organizada com foco em separação de responsabilidades, validações e evolução futura.
-- As decisões foram escolhidas para manter a solução compreensível, coerente e alinhada com as regras de negócio.
+Toda a documentação do projeto está organizada na pasta docs/:
 
-## Regras de negócio representadas
-
-- RN01: apenas professores vinculados podem publicar atividades
-- RN02: entregas fora do prazo devem ser sinalizadas
-- RN03: apenas professores vinculados podem acessar entregas
-- RN06: notas devem respeitar a faixa de 0 a 10
+- [Visão do Produto](docs/visao-produto.md) - Problema, objetivos e benefícios esperados
+- [Stakeholders](docs/stakeholders.md) - Principais envolvidos no sistema
+- [Regras de Negócio](docs/regras-negocio.md) - Regras e seus impactos na solução
+- [User Stories](docs/user-stories.md) - Histórias de usuário e critérios de aceitação
+- [MVP](docs/mvp.md) - Definição do produto mínimo viável
+- [Arquitetura](docs/arquitetura.md) - Decisões e justificativas arquiteturais
+- [Sprint](docs/sprint.md) - Diário de desenvolvimento
 
 ## Estrutura do repositório
 
-- [README.md](README.md) — visão geral da entrega
-- [BPMN.png](BPMN.png) — diagrama BPMN final
-- [UML.png](UML.png) — modelo UML final
-- [C4.png](C4.png) — visão C4 final
-- [docs/](docs/) — documentação resumida com decisões, justificativas e contexto
+```text
+helix-lms/
+├── docs/               # Documentação do projeto
+├── bpmn/               # Diagramas de processos de negócio
+├── uml/                # Diagramas UML
+├── c4/                 # Modelos de arquitetura C4
+├── apresentacao/       # Apresentação final
+└── README.md
+```
 
-## Como usar esta entrega
+## Links
 
-1. Comece pelo BPMN para entender o fluxo do processo.
-2. Em seguida, veja o UML para compreender o domínio.
-3. Por fim, consulte o C4 para entender a arquitetura.
+- Repositório GitHub: [helix-lms](https://github.com/Henriquetone/helix-lms)
+- Gestor de Projetos: [Link do Kanban](https://helix-lms.atlassian.net/)
 
-Essa organização foi pensada para deixar a entrega mais clara, mais didática e mais parecida com uma apresentação estrutural de projeto.
+## Disciplina
+
+Modelagem e Projetos em Engenharia de Software  
+Professora: Fabricia Roos  
+UNIJUÍ
