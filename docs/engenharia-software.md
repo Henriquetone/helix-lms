@@ -1,9 +1,5 @@
 # Engenharia de Software
 
-Este documento registra a parte do trabalho do Pedro no Helix LMS, focada em Engenharia de Software, Requisitos de Software e Regras de Negócio.
-
-Ele segue o contexto do projeto de plataforma de gestão de sala de aula online e atende às orientações dos meta-requisitos da disciplina de Modelagem e Projetos em Engenharia de Software.
-
 ## 1. Contexto
 
 O Helix LMS é um sistema educacional voltado para a gestão de turmas, atividades, entregas e avaliações entre professores, estudantes e coordenadores.
@@ -133,27 +129,11 @@ A parte de Engenharia de Software envolve:
 
 ## 4. Rastreabilidade entre artefatos
 
-- **RN01** → US03, US04, workflow de publicação de atividade, arquitetura de autorização.
-- **RN02** → US05, US06, processo de entrega e correção, status de entrega no modelo de dados.
+- **RN01** → US03, workflow de publicação de atividade, arquitetura de autorização.
+- **RN02** → US04, US05, processo de entrega e correção, status de entrega no modelo de dados.
 - **RN03** → US01, US02, controle de acesso a turmas, visualização filtrada por matrícula.
-- **RN04** → US05, política de upload de arquivos, UI de validação de tamanho.
-- **RN05** → US09, estado de atividade reaberta, histórico de alterações.
-- **RN06** → US07, US08, validação de notas e relatórios de desempenho.
-- **RN07** → US10, dashboard de coordenador, permissões de leitura global.
-- **RN08** → RF02, criação de turmas, integridade de dados.
-
-## 5. Contribuição do Pedro
-
-Esta parte do trabalho do Pedro concentra-se na documentação e análise de requisitos do Helix LMS:
-
-- definição dos requisitos de software essenciais e não funcionais
-- elaboração de regras de negócio alinhadas ao domínio educacional
-- mapeamento da rastreabilidade entre regras, histórias e arquitetura
-- contribuição para os artefatos de requisitos que sustentam a modelagem do sistema
-
-## 6. Como usar este documento
-
-- Consultar `docs/regras-negocio.md` para a lista detalhada de regras de negócio.
-- Consultar `docs/user-stories.md` para as histórias de usuário que derivam destes requisitos.
-- Consultar `docs/mvp.md` para a priorização do escopo do MVP.
-- Consultar `docs/arquitetura.md` para os impactos arquiteturais das regras e requisitos.
+- **RN04** → US03, US04, política de upload de arquivos, UI de validação de tamanho.
+- **RN05** → US08, estado de atividade reaberta, histórico de alterações.
+- **RN06** → US06, US07, validação de notas e relatórios de desempenho.
+- **RN07** → US09, dashboard de coordenador, permissões de leitura global.
+- **RN08** → RF02, US10, UC12, criação de turmas, integridade de dados.

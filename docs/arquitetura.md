@@ -1,64 +1,71 @@
-# Arquitetura de Software – Helix LMS
+# Arquitetura de Software - Helix LMS
 
-## Visão geral
+## Visao geral
 
-O Helix LMS é um sistema de gestão de sala de aula online projetado para centralizar a gestão de turmas, atividades, entregas e avaliações entre professores e estudantes. Esta documentação registra as principais decisões arquiteturais tomadas durante o projeto, suas justificativas e impactos técnicos.
+O Helix LMS foi modelado para centralizar turmas, atividades, entregas, avaliacoes e acompanhamento pedagogico. A arquitetura precisa atender ao MVP sem perder coerencia com regras de seguranca, prazo, integridade de dados e evolucao futura.
 
-## Estilo arquitetural
+## Estilo arquitetural escolhido
 
-A solução foi modelada com uma arquitetura híbrida, combinando:
+A solucao adota uma **arquitetura hibrida**:
 
-- camadas para o fluxo principal do sistema;
-- eventos para operações assíncronas, como notificações e análise pedagógica.
+- O nucleo transacional usa arquitetura em camadas.
+- Notificacoes e analises pedagogicas usam eventos e processamento assincrono.
 
-Essa abordagem é adequada porque o MVP precisa ser claro e simples, mas também precisa suportar processos que não devem bloquear a experiência do usuário.
-
-### Arquitetura em camadas
-
-O fluxo principal segue uma estrutura em camadas com separação entre apresentação, aplicação, domínio e infraestrutura:
+Essa escolha evita uma arquitetura pesada para o MVP, mas prepara o sistema para operacoes que nao devem bloquear a experiencia do usuario, como envio de e-mails e calculo de indicadores.
 
 ```text
-Camada de apresentação -> API -> Camada de domínio -> Banco de dados
+Web App -> API Server -> Dominio/Servicos -> Banco de Dados
+                          |
+                          `-> Fila -> Workers -> Email/Analises
 ```
 
-### Processamento assíncrono
+## Por que nao apenas camadas?
 
-Ações como publicação de atividade, registro de entrega e liberação de nota podem gerar eventos para uma fila, permitindo que workers processem notificações e análises sem travar a operação principal.
+Uma arquitetura em camadas pura seria suficiente para cadastro, turmas, atividades, entregas e notas. Porem, notificacoes e analise pedagogica preditiva ficariam acopladas ao tempo de resposta da API. A abordagem hibrida mantem o fluxo principal simples e desloca tarefas secundarias para processamento assincrono.
 
-## Principais decisões arquiteturais
+## Principais responsabilidades
 
-### DA01 – Controle de acesso baseado em papéis (RBAC)
+### Web App
+- Interface para estudante, professor, coordenador e administrador.
+- Validacoes de usabilidade, como tamanho de arquivo antes do envio.
+- Exibicao de status de entregas, notas e dashboards.
 
-O sistema possui perfis distintos e exige controle granular de acesso. A solução foi pensada para validar permissões no backend, garantindo consistência entre regras de negócio e arquitetura.
+### API Server
+- Autenticacao JWT.
+- Autorizacao por RBAC.
+- Regras de negocio de turmas, atividades, entregas e avaliacoes.
+- Publicacao de eventos para notificacoes e analises.
 
-### DA02 – Autenticação via JWT
+### Banco de Dados Relacional
+- Persistencia de usuarios, turmas, matriculas, atividades, entregas e avaliacoes.
+- Constraints de integridade, como professor obrigatorio na turma e nota entre 0 e 10.
 
-A comunicação entre frontend e backend é autenticada de forma segura e stateless, favorecendo escalabilidade e integração futura com aplicações móveis.
+### Object Storage
+- Armazenamento de materiais e entregas.
+- Separacao entre arquivos binarios e dados transacionais.
 
-### DA03 – Banco de dados relacional
+### Fila e Workers
+- Envio de notificacoes sem bloquear a API.
+- Processamento de indicadores da funcionalidade inovadora.
 
-O domínio é fortemente relacional, com entidades como usuário, turma, atividade, entrega e avaliação. Por isso, o uso de um banco relacional é a escolha mais adequada.
+## Rastreabilidade arquitetural
 
-### DA04 – Armazenamento de arquivos separado
+| Regra/Requisito | Decisao arquitetural |
+|---|---|
+| RN01 - Apenas professores criam atividades | JWT + RBAC + validacao no backend |
+| RN02 - Entregas atrasadas sinalizadas | Servico de prazo e status persistido |
+| RN03 - Estudante acessa turmas matriculadas | Middleware valida vinculo estudante-turma |
+| RN04 - Limite de arquivos | Validacao no Web App, API e Object Storage |
+| RN06 - Notas entre 0 e 10 | Regra de dominio e constraint no banco |
+| RN08 - Turma com professor responsavel | Validacao de criacao e integridade referencial |
+| Funcionalidade inovadora | Eventos, fila e worker de analise pedagogica |
 
-Arquivos de atividades e entregas podem ser armazenados em um serviço de object storage, desacoplando o armazenamento do servidor de aplicação.
+## Funcionalidade inovadora
 
-### DA05 – Processamento assíncrono para notificações
+O modulo de analise pedagogica preditiva fica isolado do fluxo principal. Ele consome dados ja produzidos pelo MVP, como atrasos, notas e participacao, para gerar indicadores de risco para professores e coordenadores.
 
-Notificações e ações complementares não devem bloquear o retorno da API ao usuário. O uso de fila de eventos é uma decisão importante para manter a resposta rápida.
+Essa separacao reduz acoplamento e permite evoluir a inovacao sem comprometer as operacoes essenciais do LMS.
 
-### DA06 – Módulo de análise pedagógica isolado
+## Conclusao
 
-A funcionalidade inovadora foi separada em um módulo próprio para evoluir independentemente do fluxo principal do MVP.
-
-## Rastreabilidade com a modelagem
-
-A arquitetura foi construída para refletir o que foi modelado em BPMN, UML e C4:
-
-- o BPMN mostra o fluxo de negócio e as validações;
-- o UML representa o domínio e os casos de uso;
-- o C4 explica a estrutura arquitetural e a comunicação entre partes do sistema.
-
-## Observação sobre a entrega individual
-
-A parte de modelagem do Erik manteve a visão do processo, do domínio e da arquitetura de forma coerente com estas decisões, contribuindo para a documentação final do projeto.
+A arquitetura hibrida e justificavel porque o MVP permanece simples e compreensivel, enquanto os pontos que exigem desacoplamento, como notificacoes e analises, sao tratados por eventos. Assim, a arquitetura responde diretamente aos requisitos e nao apenas a uma escolha tecnologica generica.

@@ -101,6 +101,12 @@ O Diagrama de Containers mostra os principais processos executáveis, armazename
 - **Responsabilidade:** Processar jobs da fila e enviar e-mails via SMTP externo.
 - **Benefício:** Falhas no envio não afetam a resposta da API ao usuário.
 
+### 7. Worker de Analise Pedagogica (Node.js)
+- **Tecnologia:** Processo Node.js separado consumindo eventos da fila Redis.
+- **Responsabilidade:** Calcular indicadores da funcionalidade inovadora, como risco de atraso, baixa participacao e queda de desempenho.
+- **Dados consumidos:** entregas, avaliacoes, prazos, reaberturas e matriculas.
+- **Beneficio:** Gera indicadores para professores e coordenadores sem bloquear o fluxo principal da API.
+
 ---
 
 ## Fluxo de Exemplo: Submissão de Entrega (US05)
@@ -116,6 +122,17 @@ O Diagrama de Containers mostra os principais processos executáveis, armazename
 9. **API Server** publica job de notificação na **Fila Redis**.
 10. **API Server** retorna resposta de sucesso ao **Web App**.
 11. **Worker de E-mail** processa job e envia e-mail de confirmação ao estudante.
+
+---
+
+## Fluxo de Exemplo: Analise Pedagogica Preditiva
+
+1. **API Server** registra entrega, avaliacao ou reabertura de atividade.
+2. **API Server** publica evento na **Fila Redis**.
+3. **Worker de Analise Pedagogica** consome o evento.
+4. **Worker de Analise Pedagogica** recalcula indicadores de risco por estudante e turma.
+5. **PostgreSQL** armazena indicadores agregados.
+6. **Web App** exibe os indicadores no painel do professor ou coordenador.
 
 ---
 
