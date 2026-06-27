@@ -1,217 +1,136 @@
-# Regras de Negócio
+# Regras de Negocio
 
-## RN01 – Apenas professores podem criar atividades
+Este documento registra as regras de negocio centrais do Helix LMS e mostra como elas influenciam requisitos, processos, casos de uso, arquitetura e requisitos nao funcionais.
 
-**Descrição:** Somente usuários com perfil de Professor têm permissão para criar, editar e excluir atividades em suas turmas. Estudantes e outros perfis não possuem essa funcionalidade.
+## RN01 - Apenas professores podem criar atividades
 
-**Justificativa:** Manter o controle pedagógico e garantir que apenas conteúdo validado seja publicado aos estudantes.
+**Descricao:** Somente usuarios com perfil Professor, vinculados a uma turma, podem criar, editar e excluir atividades nessa turma.
 
-### Impactos
+**Justificativa:** Mantem controle pedagogico e evita publicacao indevida de tarefas.
 
-#### User Stories
-- **US03:** Como professor, desejo criar atividades com título, descrição, anexos e prazo, para disponibilizar tarefas aos estudantes da minha turma.
-- **US04:** Como professor, desejo editar atividades já publicadas, para corrigir informações ou atualizar requisitos.
-
-#### Processos (BPMN)
-- No processo "Publicação de Atividade", a ação de criação é executada exclusivamente pelo ator Professor
-- Gateway de validação verifica o perfil do usuário antes de permitir acesso ao formulário de criação
-
-#### Casos de Uso
-- **UC01:** Criar Atividade (Ator: Professor)
-- **UC02:** Editar Atividade (Ator: Professor)
-- **UC03:** Excluir Atividade (Ator: Professor)
-
-#### Arquitetura
-- Necessidade de sistema de autenticação robusto
-- Implementação de RBAC (Role-Based Access Control) para controlar permissões
-- Middleware de autorização nas rotas de criação/edição de atividades
-- Camada de serviço valida perfil antes de executar operações
-
-#### Requisitos Não Funcionais
-- **Segurança:** Controle de acesso baseado em perfis
-- **Auditoria:** Registro de todas as operações de criação/edição
+**Impactos:**
+- User Story: US03.
+- BPMN: publicacao de atividade ocorre na raia Professor e depende de validacao de perfil.
+- Casos de Uso: UC01 Criar Atividade, UC02 Editar Atividade, UC03 Excluir Atividade.
+- Arquitetura: autenticacao JWT, RBAC e validacao no backend.
+- RNFs: seguranca e auditoria.
 
 ---
 
-## RN02 – Entregas após prazo devem ser sinalizadas
+## RN02 - Entregas apos prazo devem ser sinalizadas
 
-**Descrição:** O sistema deve automaticamente identificar e marcar entregas realizadas após a data/hora limite estabelecida pelo professor. Entregas atrasadas são aceitas, mas claramente sinalizadas.
+**Descricao:** O sistema deve identificar entregas feitas depois do prazo. A entrega pode ser aceita, mas deve ficar marcada como atrasada.
 
-**Justificativa:** Permitir flexibilidade ao professor na aceitação de entregas atrasadas, mantendo transparência sobre o cumprimento de prazos.
+**Justificativa:** Preserva flexibilidade pedagogica sem esconder o descumprimento de prazo.
 
-### Impactos
-
-#### User Stories
-- **US07:** Como estudante, desejo visualizar se minha entrega foi realizada no prazo ou com atraso, para ter transparência sobre minha situação.
-- **US08:** Como professor, desejo visualizar quais entregas foram feitas após o prazo, para considerar isso na avaliação.
-
-#### Processos (BPMN)
-- No processo "Entrega de Atividade", gateway de decisão verifica se a data/hora atual é posterior ao prazo
-- Fluxo alternativo para entregas atrasadas inclui marcação automática
-
-#### Casos de Uso
-- **UC04:** Submeter Entrega (inclui validação de prazo)
-- **UC05:** Visualizar Entregas (filtragem por status de prazo)
-
-#### Arquitetura
-- Serviço de validação de prazos com comparação de timestamps
-- Campo adicional no modelo de dados: `entregue_atraso` (boolean)
-- Notificação assíncrona para estudante sobre status da entrega
-
-#### Requisitos Não Funcionais
-- **Confiabilidade:** Sincronização de horário via NTP
-- **Usabilidade:** Indicação visual clara de entregas atrasadas
+**Impactos:**
+- User Stories: US04 e US05.
+- BPMN: gateway compara data/hora de envio com o prazo da atividade.
+- Casos de Uso: UC04 Submeter Entrega e UC05 Visualizar Entregas.
+- Arquitetura: servico de prazo calcula `entregue_atraso` e persiste o status.
+- RNFs: confiabilidade de horario e usabilidade na sinalizacao.
 
 ---
 
-## RN03 – Estudante só pode acessar turmas nas quais está matriculado
+## RN03 - Estudante so pode acessar turmas nas quais esta matriculado
 
-**Descrição:** O acesso a materiais, atividades e informações de uma turma é restrito aos estudantes matriculados nela. Estudantes não podem visualizar conteúdo de turmas em que não estão inscritos.
+**Descricao:** Conteudos, atividades e entregas de uma turma so podem ser acessados por estudantes matriculados nela.
 
-**Justificativa:** Garantir privacidade e organização, evitando acesso indevido a conteúdo de outras turmas.
+**Justificativa:** Garante privacidade, organizacao e controle de acesso ao conteudo academico.
 
-### Impactos
-
-#### User Stories
-- **US01:** Como estudante, desejo visualizar apenas as turmas nas quais estou matriculado, para ter uma visão organizada do meu conteúdo.
-- **US02:** Como professor, desejo que apenas estudantes matriculados acessem minha turma, para garantir privacidade do conteúdo.
-
-#### Casos de Uso
-- **UC06:** Visualizar Turmas (filtrado por matrícula)
-- **UC07:** Acessar Conteúdo da Turma (validação de matrícula)
-
-#### Arquitetura
-- Relacionamento muitos-para-muitos entre Estudantes e Turmas (tabela de matrícula)
-- Middleware de autorização valida matrícula antes de servir conteúdo
-- Cache de permissões por sessão para otimizar validações
-
-#### Requisitos Não Funcionais
-- **Segurança:** Validação de matrícula em todas as requisições de conteúdo
-- **Performance:** Cache de relações estudante-turma
+**Impactos:**
+- User Stories: US01 e US02.
+- BPMN: a matricula via codigo antecede o acesso ao conteudo da turma.
+- Casos de Uso: UC06 Visualizar Turmas e UC07 Acessar Conteudo da Turma.
+- Arquitetura: middleware valida o vinculo estudante-turma em requisicoes protegidas.
+- RNFs: seguranca e desempenho com cache de permissoes.
 
 ---
 
-## RN04 – Limite de tamanho para arquivos enviados
+## RN04 - Limite de tamanho para arquivos enviados
 
-**Descrição:** Arquivos enviados por estudantes (entregas) e professores (materiais) devem respeitar um limite máximo de 50MB por arquivo. Uploads acima desse limite são rejeitados.
+**Descricao:** Arquivos enviados por professores ou estudantes devem respeitar limite maximo de 50MB por arquivo.
 
-**Justificativa:** Garantir viabilidade técnica de armazenamento e transferência de arquivos, evitando sobrecarga do sistema.
+**Justificativa:** Evita sobrecarga de armazenamento, transferencia e processamento.
 
-### Impactos
-
-#### User Stories
-- **US09:** Como estudante, desejo receber feedback claro se meu arquivo excede o limite, para ajustá-lo antes de enviar.
-- **US10:** Como professor, desejo fazer upload de materiais dentro do limite estabelecido, para disponibilizá-los aos estudantes.
-
-#### Casos de Uso
-- **UC08:** Upload de Arquivo (validação de tamanho)
-
-#### Arquitetura
-- Validação client-side (JavaScript) antes do upload
-- Validação server-side no controller antes de processar
-- Configuração de limite no servidor web (nginx/apache)
-- Armazenamento em serviço de object storage (S3, MinIO)
-
-#### Requisitos Não Funcionais
-- **Usabilidade:** Mensagem clara sobre o limite e tamanho atual do arquivo
-- **Performance:** Rejeição rápida de arquivos grandes sem processamento completo
+**Impactos:**
+- User Stories: US03 e US04.
+- BPMN: validacao antes do envio de material ou entrega.
+- Casos de Uso: UC08 Upload de Arquivo.
+- Arquitetura: validacao no Web App e na API, com armazenamento em Object Storage.
+- RNFs: desempenho e usabilidade.
 
 ---
 
-## RN05 – Professor pode reabrir atividade encerrada
+## RN05 - Professor pode reabrir atividade encerrada
 
-**Descrição:** Professores têm autonomia para reabrir atividades cujo prazo já expirou, permitindo novas entregas ou entregas tardias de estudantes.
+**Descricao:** Professores podem reabrir atividades cujo prazo expirou para permitir novas entregas em situacoes excepcionais.
 
-**Justificativa:** Oferecer flexibilidade pedagógica ao professor para lidar com situações excepcionais.
+**Justificativa:** Da autonomia pedagogica ao professor sem apagar o historico do processo.
 
-### Impactos
-
-#### User Stories
-- **US11:** Como professor, desejo reabrir uma atividade encerrada, para permitir entregas de estudantes em situações excepcionais.
-
-#### Casos de Uso
-- **UC09:** Reabrir Atividade (Ator: Professor)
-
-#### Arquitetura
-- Campo de status da atividade: `aberta`, `encerrada`, `reaberta`
-- Histórico de mudanças de status com timestamp e responsável
-- Notificação aos estudantes quando atividade é reaberta
-
-#### Requisitos Não Funcionais
-- **Auditoria:** Registro de todas as reabertura de atividades
-- **Rastreabilidade:** Histórico completo de mudanças de status
+**Impactos:**
+- User Story: US08.
+- BPMN: fluxo alternativo de reabertura com notificacao aos estudantes.
+- Caso de Uso: UC09 Reabrir Atividade.
+- Arquitetura: campo de status da atividade, historico de mudancas e evento de notificacao.
+- RNFs: auditoria e rastreabilidade.
 
 ---
 
-## RN06 – Notas devem estar entre 0 e 10
+## RN06 - Notas devem estar entre 0 e 10
 
-**Descrição:** Todas as notas atribuídas pelo professor devem estar no intervalo de 0 a 10, com precisão de até 2 casas decimais (ex: 7.25, 9.50).
+**Descricao:** Todas as notas atribuidas devem estar no intervalo de 0 a 10, com ate duas casas decimais.
 
-**Justificativa:** Padronizar o sistema de avaliação conforme práticas educacionais brasileiras.
+**Justificativa:** Padroniza a avaliacao conforme pratica academica brasileira.
 
-### Impactos
-
-#### User Stories
-- **US12:** Como professor, desejo atribuir notas de 0 a 10 com decimais, para avaliar precisamente o desempenho dos estudantes.
-
-#### Casos de Uso
-- **UC10:** Atribuir Nota (validação de intervalo)
-
-#### Arquitetura
-- Validação de input no frontend (range 0-10)
-- Validação de domínio no backend (regra de negócio)
-- Tipo de dado: DECIMAL(4,2) no banco de dados
-
-#### Requisitos Não Funcionais
-- **Integridade:** Garantir que notas fora do intervalo sejam rejeitadas
-- **Usabilidade:** Mensagem clara sobre o formato aceito
+**Impactos:**
+- User Stories: US06 e US07.
+- BPMN: correcao de entrega inclui validacao da nota antes da liberacao.
+- Caso de Uso: UC10 Atribuir Nota.
+- Arquitetura: validacao de dominio no backend e tipo `DECIMAL(4,2)` no banco.
+- RNFs: integridade e usabilidade.
 
 ---
 
-## RN07 – Coordenador pode visualizar todas as turmas
+## RN07 - Coordenador pode visualizar todas as turmas
 
-**Descrição:** Usuários com perfil de Coordenador possuem permissão de leitura sobre todas as turmas da instituição, independentemente do professor responsável.
+**Descricao:** Coordenadores possuem permissao de leitura sobre todas as turmas da instituicao, independentemente do professor responsavel.
 
-**Justificativa:** Permitir supervisão pedagógica e geração de relatórios institucionais.
+**Justificativa:** Permite supervisao pedagogica e acompanhamento institucional.
 
-### Impactos
-
-#### User Stories
-- **US13:** Como coordenador, desejo visualizar todas as turmas da instituição, para acompanhar o andamento pedagógico.
-
-#### Casos de Uso
-- **UC11:** Visualizar Dashboard Institucional (Ator: Coordenador)
-
-#### Arquitetura
-- RBAC com permissão especial para coordenadores: `read:all_turmas`
-- Query sem filtro de relacionamento para perfil coordenador
-- Endpoint específico para visão institucional
-
-#### Requisitos Não Funcionais
-- **Performance:** Paginação e cache para listagens grandes
-- **Segurança:** Coordenador tem apenas leitura, não pode modificar turmas de outros professores
+**Impactos:**
+- User Story: US09.
+- BPMN: consulta institucional separada do fluxo operacional do estudante.
+- Caso de Uso: UC11 Visualizar Dashboard Institucional.
+- Arquitetura: permissao `read:all_turmas` e endpoint institucional.
+- RNFs: seguranca e desempenho com paginacao.
 
 ---
 
-## RN08 – Turma deve ter pelo menos um professor responsável
+## RN08 - Turma deve ter pelo menos um professor responsavel
 
-**Descrição:** Toda turma criada no sistema deve obrigatoriamente ter ao menos um professor designado como responsável. Não é permitida a existência de turmas sem professor.
+**Descricao:** Toda turma criada no sistema deve ter ao menos um professor responsavel. Nao e permitida turma sem professor.
 
-**Justificativa:** Garantir responsabilidade pedagógica e gestão adequada de cada turma.
+**Justificativa:** Garante responsabilidade pedagogica e clareza de gestao.
 
-### Impactos
+**Impactos:**
+- User Story: US10.
+- BPMN: criacao da turma exige professor responsavel antes de liberar codigo de acesso.
+- Caso de Uso: UC12 Criar Turma.
+- Arquitetura: validacao na API e constraint `NOT NULL` no relacionamento turma-professor.
+- RNFs: integridade e usabilidade.
 
-#### User Stories
-- **US14:** Como administrador, ao criar uma turma, devo obrigatoriamente designar um professor responsável.
+---
 
-#### Casos de Uso
-- **UC12:** Criar Turma (validação de professor obrigatório)
+## Matriz resumida de rastreabilidade
 
-#### Arquitetura
-- Relacionamento obrigatório entre Turma e Professor no modelo de dados
-- Validação de integridade referencial no banco (NOT NULL)
-- Validação no formulário de criação de turma
-
-#### Requisitos Não Funcionais
-- **Integridade:** Constraint de banco de dados impede turma sem professor
-- **Usabilidade:** Campo professor marcado como obrigatório no formulário
+| Regra | User Stories | BPMN | UML | Arquitetura/C4 |
+|---|---|---|---|---|
+| RN01 | US03 | Publicacao por Professor | UC01, UC02, UC03 | JWT, RBAC e middleware no API Server |
+| RN02 | US04, US05 | Gateway de prazo | UC04, UC05 | Servico de prazo e status no PostgreSQL |
+| RN03 | US01, US02 | Matricula antes do acesso | UC06, UC07 | Validacao de vinculo estudante-turma |
+| RN04 | US03, US04 | Validacao de upload | UC08 | Web App, API e Object Storage |
+| RN05 | US08 | Reabertura e notificacao | UC09 | Status, historico e evento assincrono |
+| RN06 | US06, US07 | Validacao de nota | UC10 | Regra de dominio e `DECIMAL(4,2)` |
+| RN07 | US09 | Consulta institucional | UC11 | Permissao de leitura global |
+| RN08 | US10 | Criacao com professor | UC12 | Integridade referencial |

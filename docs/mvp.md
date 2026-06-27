@@ -1,185 +1,89 @@
 # MVP - Minimum Viable Product
 
-## 1. Funcionalidades Essenciais (MVP)
+## Objetivo do MVP
 
-### Gestão de Usuários
-- **US01:** Visualizar turmas matriculadas
-  - Estudante acessa lista de suas turmas ativas
-  - Visualização de informações básicas (nome, professor, código)
-- **US02:** Entrar em turma via código
-  - Matrícula simplificada usando código de acesso
-  - Validação e confirmação imediata
+O MVP do Helix LMS valida o ciclo essencial de uma sala de aula online: criacao de turma, matricula, publicacao de atividade, entrega, correcao e acompanhamento de notas.
 
-**Justificativa:** Base fundamental para que estudantes e professores possam interagir no sistema. Sem gestão de turmas, não há contexto para as demais funcionalidades.
+O escopo foi priorizado para entregar valor direto a professores e estudantes antes de expandir para relatorios avancados, comunicacao sincronica ou recursos institucionais mais sofisticados.
 
----
+## Funcionalidades essenciais
 
-### Gestão de Atividades
-- **US03:** Criar atividade
-  - Professor cria atividades com título, descrição, anexos e prazo
-  - Publicação imediata para estudantes da turma
-- **US04:** Editar atividade
-  - Professor atualiza informações de atividades publicadas
-  - Notificação automática aos estudantes
+### Gestao de turmas e acesso
 
-**Justificativa:** Core do sistema - permite ao professor distribuir tarefas e exercícios. É o principal mecanismo de interação professor-estudante.
+- US01 - Visualizar turmas matriculadas.
+- US02 - Entrar em turma via codigo.
+- US10 - Criar turma com professor responsavel.
 
----
+**Justificativa:** Turma, matricula e professor responsavel formam a base do dominio. Sem isso, nao ha contexto seguro para atividades, entregas ou avaliacoes.
 
-### Gestão de Entregas
-- **US05:** Submeter entrega de atividade
-  - Estudante faz upload de arquivo com validação de tamanho
-  - Registro automático de data/hora e status (no prazo/atrasado)
-- **US06:** Visualizar entregas da turma
-  - Professor acessa todas as entregas organizadas
-  - Filtros por status e download em lote
+### Gestao de atividades
 
-**Justificativa:** Fecha o ciclo básico de publicação-entrega. Sem isso, o sistema não cumpre seu propósito principal de gerenciar atividades acadêmicas.
+- US03 - Gerenciar atividades.
 
----
+**Justificativa:** A atividade e o principal mecanismo de organizacao do trabalho academico entre professor e estudante. A mesma historia cobre criacao e edicao para manter o conjunto dentro do limite de 5 a 10 User Stories.
 
-### Avaliação
-- **US07:** Atribuir nota e feedback
-  - Professor avalia entregas com nota (0-10) e comentários
-  - Notificação automática ao estudante
-- **US08:** Acompanhar notas
-  - Estudante visualiza suas notas e feedbacks
-  - Histórico completo de avaliações
+### Gestao de entregas
 
-**Justificativa:** Essencial para fechar o ciclo pedagógico. O processo de avaliação e transparência de notas é requisito básico de qualquer plataforma educacional.
+- US04 - Submeter entrega de atividade.
+- US05 - Visualizar entregas da turma.
 
----
+**Justificativa:** Fecha o fluxo de publicacao e permite ao professor acompanhar cumprimento de prazos, arquivos enviados e pendencias.
 
-## 2. Funcionalidades Futuras (Versão 2.0+)
+### Avaliacao
 
-### Flexibilidade Pedagógica
-- **US09:** Reabrir atividade encerrada
-  - Professor pode reabrir atividades com prazo expirado
-  - Registro de histórico de reabertura
+- US06 - Atribuir nota e feedback.
+- US07 - Acompanhar notas.
 
-**Justificativa para postergar:** Embora útil, não é crítico para o funcionamento básico. Professores podem inicialmente criar novas atividades para casos excepcionais. Adiciona complexidade de gerenciamento de estados.
+**Justificativa:** Completa o ciclo pedagogico com devolutiva ao estudante e registro de desempenho.
 
----
+## Funcionalidades futuras
 
-### Gestão Institucional
-- **US10:** Dashboard institucional para coordenador
-  - Visão consolidada de métricas institucionais
-  - Relatórios e gráficos de desempenho
-  - Exportação de dados
+- US08 - Reabrir atividade encerrada.
+- US09 - Dashboard institucional para coordenador.
+- Chat em tempo real.
+- Forum por turma.
+- Videoconferencia integrada.
+- Gamificacao.
+- Provas online com correcao automatica.
+- Integracoes externas com sistemas academicos.
 
-**Justificativa para postergar:** Funcionalidade voltada para gestão e análise, não para o dia a dia de professores e estudantes. Requer coleta de dados históricos para ser realmente útil. Pode ser desenvolvida após validação do MVP com usuários principais.
+## Justificativa de priorizacao
 
----
+As funcionalidades de avaliacao e entrega foram priorizadas antes de comunicacao avancada porque resolvem o problema central do produto: organizar o ciclo de atividades academicas. Chat, forum e videoconferencia sao uteis, mas podem ser substituidos temporariamente por canais externos. Ja entrega, prazo, correcao e nota sao parte do processo principal que o Helix LMS precisa controlar.
 
-### Comunicação Avançada (Futuro)
-- Chat em tempo real entre professores e estudantes
-- Sistema de mensagens privadas
-- Fórum de discussão por turma
-- Videoconferências integradas
+## Criterios usados
 
-**Justificativa para postergar:** Comunicação básica pode ser feita via notificações e feedback em atividades. Funcionalidades de comunicação síncrona exigem infraestrutura mais robusta e podem ser substituídas temporariamente por ferramentas externas.
+| Criterio | Pergunta de avaliacao |
+|---|---|
+| Valor para usuario | Resolve o problema principal de professores e estudantes? |
+| Dependencia | Outras funcionalidades precisam disso para existir? |
+| Viabilidade tecnica | Pode ser modelado e implementado sem dependencias externas complexas? |
+| Risco | A ausencia dessa funcionalidade compromete o MVP? |
+| Rastreabilidade | A funcionalidade deriva de regras de negocio e aparece nos artefatos? |
 
----
+## Matriz de priorizacao
 
-### Recursos Avançados (Futuro)
-- Sistema de pontos e gamificação
-- Badges e conquistas
-- Provas online com correção automática
-- Banco de questões
-- Integração com outros sistemas (SIGAA, Moodle)
+| User Story | Valor | Viabilidade | Dependencia | Complexidade | Prioridade | Versao |
+|---|---|---|---|---|---|---|
+| US01 | Alto | Alta | Base | Baixa | Critica | MVP |
+| US02 | Alto | Alta | US10 | Baixa | Critica | MVP |
+| US03 | Alto | Alta | US01, US10 | Media | Critica | MVP |
+| US04 | Alto | Alta | US03 | Media | Critica | MVP |
+| US05 | Alto | Alta | US04 | Media | Critica | MVP |
+| US06 | Alto | Alta | US05 | Media | Critica | MVP |
+| US07 | Alto | Alta | US06 | Baixa | Alta | MVP |
+| US08 | Medio | Media | US03 | Media | Baixa | v2.0 |
+| US09 | Medio | Baixa | Dados historicos | Alta | Baixa | v2.0 |
+| US10 | Alto | Alta | Base | Baixa | Critica | MVP |
 
-**Justificativa para postergar:** Funcionalidades "nice-to-have" que agregam valor mas não são necessárias para validar a proposta central do sistema. Devem ser desenvolvidas após feedback dos usuários do MVP.
+## Metricas de validacao
 
----
+- Pelo menos 80% dos professores conseguem criar e publicar uma atividade em menos de 5 minutos.
+- Pelo menos 90% dos estudantes conseguem submeter uma entrega sem suporte externo.
+- Reducao de 50% no tempo de organizacao manual de entregas.
+- 70% das turmas piloto usam o sistema regularmente durante o periodo de validacao.
+- Satisfacao media acima de 7 em escala de 0 a 10 entre usuarios piloto.
 
-## 3. Critérios de Priorização
+## Escopo fora do MVP
 
-### Usados para definir o MVP:
-
-1. **Valor para o usuário**
-   - Resolve o problema principal identificado na Visão do Produto?
-   - É essencial para o fluxo básico professor-estudante?
-
-2. **Viabilidade técnica**
-   - Pode ser implementado rapidamente?
-   - Depende de integrações complexas?
-
-3. **Dependências**
-   - É funcionalidade base para outras features?
-   - Outras funcionalidades dependem desta?
-
-4. **Complexidade**
-   - Quanto esforço de desenvolvimento requer?
-   - Complexidade de manutenção?
-
-5. **Risco**
-   - Qual o impacto de NÃO ter na primeira versão?
-   - Pode ser substituído temporariamente?
-
----
-
-## 4. Matriz de Priorização
-
-| User Story | Valor | Viabilidade | Dependências | Complexidade | Prioridade | Versão |
-|------------|-------|-------------|--------------|--------------|------------|--------|
-| US01       | Alto  | Alta        | Base         | Baixa        | CRÍTICA    | MVP    |
-| US02       | Alto  | Alta        | Base         | Baixa        | CRÍTICA    | MVP    |
-| US03       | Alto  | Alta        | Depende US01 | Média        | CRÍTICA    | MVP    |
-| US04       | Médio | Alta        | Depende US03 | Baixa        | ALTA       | MVP    |
-| US05       | Alto  | Alta        | Depende US03 | Média        | CRÍTICA    | MVP    |
-| US06       | Alto  | Alta        | Depende US05 | Média        | CRÍTICA    | MVP    |
-| US07       | Alto  | Alta        | Depende US06 | Média        | CRÍTICA    | MVP    |
-| US08       | Alto  | Alta        | Depende US07 | Baixa        | ALTA       | MVP    |
-| US09       | Baixo | Média       | Depende US03 | Média        | BAIXA      | v2.0   |
-| US10       | Médio | Baixa       | Requer dados | Alta         | BAIXA      | v2.0   |
-
----
-
-## 5. Escopo do MVP
-
-### O que DEVE ter:
-✅ Cadastro e autenticação de usuários (Professor, Estudante, Coordenador)  
-✅ Criação e gerenciamento de turmas  
-✅ Matrícula de estudantes via código  
-✅ Publicação de atividades com prazo  
-✅ Upload de arquivos (materiais e entregas)  
-✅ Submissão de entregas com validação de prazo  
-✅ Atribuição de notas e feedback  
-✅ Visualização de notas pelos estudantes  
-✅ Notificações básicas (e-mail)  
-✅ Sistema de controle de acesso (RBAC)
-
-### O que NÃO terá no MVP:
-❌ Reabertura de atividades  
-❌ Dashboard institucional completo  
-❌ Chat em tempo real  
-❌ Videoconferência  
-❌ Gamificação  
-❌ Provas online com correção automática  
-❌ Integrações externas  
-❌ Aplicativo mobile nativo  
-❌ Relatórios avançados com BI
-
----
-
-## 6. Validação do MVP
-
-### Métricas de Sucesso:
-- Pelo menos 80% dos professores conseguem criar e publicar atividade em < 5 minutos
-- Pelo menos 90% dos estudantes conseguem submeter entrega sem dificuldade
-- Taxa de adoção: 70% das turmas piloto utilizam o sistema regularmente
-- Redução de 50% no tempo gasto por professores com organização de entregas
-- NPS (Net Promoter Score) > 7 entre usuários piloto
-
-### Público Piloto:
-- 5-10 turmas
-- 2-5 professores
-- 50-200 estudantes
-- Período de validação: 1 semestre letivo
-
-### Ciclo de Feedback:
-1. Lançamento do MVP para turmas piloto
-2. Coleta de feedback semanal (formulários e entrevistas)
-3. Ajustes e correções rápidas
-4. Validação das hipóteses de valor
-5. Decisão sobre desenvolvimento de funcionalidades futuras baseada em dados reais de uso
+O MVP nao inclui comunicacao sincronica, BI avancado, aplicativo mobile nativo, integracoes externas ou automacao complexa de provas. Essas funcionalidades exigem mais infraestrutura e so devem ser priorizadas apos validacao do ciclo principal.

@@ -1,10 +1,10 @@
 # Helix LMS
 
-Sistema de Gestão de Sala de Aula Online desenvolvido como projeto da disciplina Modelagem e Projetos em Engenharia de Software.
+Sistema de Gestao de Sala de Aula Online desenvolvido como projeto da disciplina Modelagem e Projetos em Engenharia de Software.
 
 ## Sobre o projeto
 
-Helix LMS é uma plataforma digital para apoiar a gestão de turmas, atividades, avaliações e comunicação entre professores e estudantes, oferecendo uma solução completa para instituições de ensino.
+Helix LMS e uma plataforma digital para apoiar a gestao de turmas, atividades, avaliacoes e comunicacao entre professores e estudantes, oferecendo uma solucao completa para instituicoes de ensino.
 
 ## Integrantes
 
@@ -13,49 +13,50 @@ Helix LMS é uma plataforma digital para apoiar a gestão de turmas, atividades,
 - Pedro Henrique Bickel Steinbrenner
 - Matheus Oliveira
 
-### Arquivos principais
+## Arquivos principais
 
-- [BPMN.png](BPMN.png) — fluxo principal de publicação, entrega e correção de atividades
-- [UML.png](UML.png) — modelo conceitual e visão do domínio do sistema
-- [C4.png](C4.png) — visão arquitetural do sistema em níveis de contexto e containers
+- [bpmn/BPMN.png](bpmn/BPMN.png) - fluxo principal de publicacao, entrega e correcao de atividades.
+- [uml/UML.png](uml/UML.png) - diagrama de casos de uso do sistema.
+- [c4/C4.png](c4/C4.png) - visao arquitetural do sistema em niveis de contexto e containers.
+- [apresentacao/apresentacao-final.md](apresentacao/apresentacao-final.md) - apresentacao final estruturada para a banca.
+- [apresentacao/apresentacao-final.html](apresentacao/apresentacao-final.html) - versao visual da apresentacao para navegador ou impressao em PDF.
 
-### Documentação relacionada
+## Documentacao
 
-- [docs/modelagem.md](docs/modelagem.md) — explicação sobre o papel de cada artefato
-- [docs/decisoes-arquiteturais.md](docs/decisoes-arquiteturais.md) — principais decisões e justificativas
-- [docs/revisao-boas-praticas.md](docs/revisao-boas-praticas.md) — refinamentos aplicados à modelagem
+Toda a documentacao do projeto esta organizada na pasta `docs/`:
 
-## Documentação
+- [Visao do Produto](docs/visao-produto.md) - Problema, objetivos e beneficios esperados.
+- [Stakeholders](docs/stakeholders.md) - Principais envolvidos no sistema.
+- [Regras de Negocio](docs/regras-negocio.md) - Regras e seus impactos na solucao.
+- [User Stories](docs/user-stories.md) - Historias de usuario e criterios de aceitacao.
+- [MVP](docs/mvp.md) - Definicao do produto minimo viavel.
+- [Arquitetura](docs/arquitetura.md) - Decisoes e justificativas arquiteturais.
+- [Decisoes Arquiteturais](docs/decisoes-arquiteturais.md) - Trade-offs das principais escolhas tecnicas.
+- [Modelagem](docs/modelagem.md) - Leitura integrada de BPMN, UML e C4.
+- [Rastreabilidade](docs/rastreabilidade.md) - Matriz entre regras, historias, BPMN, UML, arquitetura e C4.
+- [Funcionalidade Inovadora](docs/funcionalidade-inovadora.md) - Analise pedagogica preditiva.
+- [Sprint](docs/sprint.md) - Diario de desenvolvimento e evidencias de colaboracao.
 
-Toda a documentação do projeto está organizada na pasta docs/:
-
-- [Visão do Produto](docs/visao-produto.md) - Problema, objetivos e benefícios esperados
-- [Stakeholders](docs/stakeholders.md) - Principais envolvidos no sistema
-- [Regras de Negócio](docs/regras-negocio.md) - Regras e seus impactos na solução
-- [User Stories](docs/user-stories.md) - Histórias de usuário e critérios de aceitação
-- [MVP](docs/mvp.md) - Definição do produto mínimo viável
-- [Arquitetura](docs/arquitetura.md) - Decisões e justificativas arquiteturais
-- [Sprint](docs/sprint.md) - Diário de desenvolvimento
-
-## Estrutura do repositório
+## Estrutura do repositorio
 
 ```text
 helix-lms/
-├── docs/               # Documentação do projeto
-├── bpmn/               # Diagramas de processos de negócio
-├── uml/                # Diagramas UML
-├── c4/                 # Modelos de arquitetura C4
-├── apresentacao/       # Apresentação final
-└── README.md
+|-- docs/               # Documentacao do projeto
+|-- bpmn/               # Diagramas de processos de negocio
+|-- uml/                # Diagramas UML
+|-- c4/                 # Modelos de arquitetura C4
+|-- apresentacao/       # Apresentacao final
+|-- META-REQUISITOS.md
+`-- README.md
 ```
 
 ## Links
 
-- Repositório GitHub: [helix-lms](https://github.com/Henriquetone/helix-lms)
-- Gestor de Projetos: [Link do Kanban](https://helix-lms.atlassian.net/)
+- Repositorio GitHub: [helix-lms](https://github.com/Henriquetone/helix-lms)
+- Gestor de Projetos: [Kanban no Jira](https://helix-lms.atlassian.net/)
 
 ## Disciplina
 
 Modelagem e Projetos em Engenharia de Software  
 Professora: Fabricia Roos  
-UNIJUÍ
+UNIJUI
